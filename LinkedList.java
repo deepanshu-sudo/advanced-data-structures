@@ -106,12 +106,12 @@ public class LinkedList {
      * @throws IndexOutOfBoundsException when index is not between 0 and size
      * Inserts the data at the given index
      */
-    public void insert(int data, int index) {
+    public void insert(Object data, int index) {
         if(index < 0 || index > size)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         
         if(index == 0) {
-            first = new Node(data,first.next);
+            first = new Node(data,first);
         } else {
             Node prev = first;
             for(int i = 0; i < index - 1; i++)
@@ -144,7 +144,7 @@ public class LinkedList {
         LinkedList list = new LinkedList();
         // Check deeply and thoroughly and with complex data
         list.insert(10,0);
-        list.insert(20,1);
+        list.insert(20,0);
         list.insert(30,2);
         list.insert(40,3);
         list.insert(50,4);
