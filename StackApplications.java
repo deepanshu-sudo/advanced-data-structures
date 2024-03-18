@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * This class is used to do conversion of expressions from
  * infix to postfix and postfix to infix
@@ -5,6 +7,27 @@
  * The class makes use of Stack for the same
  */
 public class StackApplications {
+
+    /**
+     * Create a Point class to represent a point in the maze
+     */
+    public static class Point {
+        int x;
+        int y;
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public boolean equals(Point p) {
+            return this.x == p.x && this.y == p.y;
+        }
+
+        public String toString() {
+            return "(" + x + ", " + y + ")";
+        }
+    }
+
     /**
      * This method is used to check if a character is an operator
      * @param c the character to be checked
@@ -131,13 +154,81 @@ public class StackApplications {
         return stack.isEmpty();
     }
 
+    /**
+     * Rat in a Maze
+     * Given a maze, NxN matrix. A rat has to find a path from source to destination.
+     * A maze is a rectangular area made of mxn squares with an entry and an exit point.
+     * Some squares of maze has obstacles (blue).
+     * Entrance at (1, 1) and exit at (m, n).
+     * It is represented by a 2D array of size mxn with obstacle cells with 2 and free cell with 0.
+     * The rat can move in all 4 directions: up, down, left, right.
+     * The rat cannot move to any of the obstacle cells.
+     * The rat can move to a cell only if it is free.
+     * The rat cannot move outside the maze.
+     */
+    public static void ratInAMaze(int[][] maze) {
+        LinkedStack path = new LinkedStack();
+        int row = 0;
+        int col = 0;
+        maze[row][col] = 1;
+        int m = maze.length-1;
+        int n = maze[0].length-1;
+
+        while(row != m || col != n) {
+            if(col < n && maze[row][col+1] == 0 ) { // move right
+                path.push(new Point(row, col));
+                col++;
+                maze[row][col] = 1;
+            } else if(row < m && maze[row+1][col] == 0) { // move down
+                path.push(new Point(row, col));
+                row++;
+                maze[row][col] = 1;
+            } else if(col > 1 && maze[row][col-1] == 0) { // move left
+                path.push(new Point(row, col));
+                col--;
+                maze[row][col] = 1;
+            } else if(row > 1 && maze[row-1][col] == 0) { // move up
+                path.push(new Point(row, col));
+                row--;
+                maze[row][col] = 1;
+            } else {
+                maze[row][col] = 2;
+                if(path.isEmpty()) {
+                    System.out.println("No path exists");
+                    return;
+                }
+                Point p = (Point) path.pop();
+                row = p.x;
+                col = p.y;
+            }
+        }
+        path.display();
+        System.out.println("Maze Path: ");
+        for(int[] r : maze) {
+            System.out.println(Arrays.toString(r));
+        }
+    }
+
     // main method for testing
     public static void main(String[] args) {
         String infix = "a+b*(c^d-e)^(f+g*h)-i";
         System.out.println(infixToPostfix(infix));
+
         String postfix = "231*+9-";
         System.out.println(evaluatePostfix(postfix));
+
         String exp = "(a+b*(c^d-e)^(f+g*h)-i)";
         System.out.println(validParentheses(exp));
+
+        int[][] maze = {
+            {0, 2, 2, 2, 2, 2, 2},
+            {0, 0, 0, 0, 0, 0, 2},
+            {2, 0, 2, 2, 2, 0, 2},
+            {2, 0, 0, 2, 0, 2, 2},
+            {2, 2, 0, 2, 0, 2, 2},
+            {2, 0, 0, 0, 0, 0, 2},
+            {2, 2, 2, 2, 2, 0, 0}
+        };
+        ratInAMaze(maze);
     }
 }
