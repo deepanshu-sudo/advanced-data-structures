@@ -2,10 +2,17 @@ import java.math.BigInteger;
 import java.util.Arrays;
 
 /**
- * This class is used to do conversion of expressions from
- * infix to postfix and postfix to infix
- * There are also methods for evaluation of the same
- * The class makes use of Stack for the same
+ * This class has the methods for the following applications of stack:
+ * 1. Infix to Postfix
+ * 2. Evaluate Postfix
+ * 3. Valid Parentheses
+ * 4. Rat in a Maze
+ * 5. Factorial using Stack
+ * 6. GCD using Stack
+ * 7. Fibonacci using Stack
+ * 8. Fibonacci using Stack - Version 2 [Easy]
+ * 9. Decimal to Binary using Stack
+ * 10. Tower of Hanoi using Stack
  */
 public class StackApplications {
 
