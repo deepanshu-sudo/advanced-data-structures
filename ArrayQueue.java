@@ -75,11 +75,21 @@ public class ArrayQueue<T> {
     /**
      * returns the front element of the queue without removing it
      */
-    public T peek() {
+    public T getFront() {
         if(isEmpty())
             throw new IllegalStateException("Queue is Empty");
 
         return queue[front];
+    }
+
+    /**
+     * returns the front element of the queue without removing it
+     */
+    public T getRear() {
+        if(isEmpty())
+            throw new IllegalStateException("Queue is Empty");
+
+        return queue[rear];
     }
 
     /**
