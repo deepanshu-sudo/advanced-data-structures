@@ -88,12 +88,103 @@ public class QueueApplications {
         return true;
     }
 
+    /**
+     * Image Component Labelling:
+     * - A digital binary image is mxm matrix of pixels, where each pixel is either 0 or 1.
+     * - A pixel with value 1 is called component pixel. Two adjacent component pixels are pixels of the  same image component .
+     * - The objective of this problem is to label the component pixels so that two pixels get the same label iff they are pixels of same image component. 
+     * - The algorithm uses a queue to label the component pixels in the image.
+     * @param pixel Binary image matrix
+     * @param m Number of rows
+     * 
+     * Algorithm:
+     * Initialization:
+     *     - The algorithm initializes a queue to store the component pixels.
+     *     - It sets id to 1, which represents the label of the image component.
+     * 
+     * Outer Iteration:
+     *      - The algorithm iterates through each pixel in the image matrix.
+     * 
+     * Component Discovery:
+     *      - If the current pixel is a component pixel (value 1), the algorithm assigns a new label (id) to the component pixel. Then the id is incremented.
+     *      - The component pixel is then added to the queue.
+     * 
+     * Flood Fill (Nearest Neighbour):
+     *      - A while loop continues until the queue is not empty:
+     *      - The algorithm removes a pixel from the queue.
+     *      - It checks the four adjacent pixels (up, down, left, right) of the current pixel.
+     *      - If an adjacent pixel is a component pixel, the algorithm assigns the current label (id) to that pixel and adds it to the queue.
+     * 
+     * Iteration & New Components:
+     *      - The algorithm repeats the above steps for all pixels in the image matrix.
+     *      - The algorithm assigns a unique label to each image component.
+     *      - The algorithm prints the labeled image matrix.
+     */
+    public static void imageComponentLabeling(int[][] pixel, int m) {
+        ArrayQueue<Point> queue = new ArrayQueue<Point>(m*m);
+        int id = 1;
+
+        for(int r = 0; r < m; r++) {
+            for(int c = 0; c < m; c++) {
+                if(pixel[r][c] == 1) {
+                    pixel[r][c] = ++id;
+                    queue.insert(new Point(r, c));
+
+                    while(!queue.isEmpty()) {
+                        Point p = queue.remove();
+                        int row = p.x;
+                        int col = p.y;
+
+                        if(col < m-1 && pixel[row][col+1] == 1) { // Right
+                            pixel[row][col+1] = id;
+                            queue.insert(new Point(row, col+1));
+                        }
+
+                        if(row < m-1 && pixel[row+1][col] == 1) { // Down
+                            pixel[row+1][col] = id;
+                            queue.insert(new Point(row+1, col));
+                        }
+
+                        if(col > 0 && pixel[row][col-1] == 1) { // Left
+                            pixel[row][col-1] = id;
+                            queue.insert(new Point(row, col-1));
+                        }
+
+                        if(row > 0 && pixel[row-1][col] == 1) { // Up
+                            pixel[row-1][col] = id;
+                            queue.insert(new Point(row-1, col));
+                        }
+                    }
+                }
+            }
+        }
+
+        for(int r = 0; r < m; r++) {
+            for(int c = 0; c < m; c++) {
+                System.out.print(pixel[r][c] + " ");
+            }
+            System.out.println();
+        }
+    }
+
     // Main method
     public static void main(String[] args) {
         // TestRailroad Car Re-Arrangement Problem 
         int inputOrder[] = {5, 8, 1, 7, 4, 2, 9, 6, 3};
         int n = inputOrder.length;
         int k = 2;
+        System.out.println("Railroad Car Re-Arrangement: ");
         railRoad(inputOrder, n, k);
+
+        // Test Image Component Labeling
+        System.out.println("\nImage Component Labeling: ");
+        int pixel[][] = {
+            {1, 0, 1, 0, 0},
+            {1, 1, 1, 0, 0},
+            {0, 0, 0, 1, 1},
+            {0, 1, 1, 1, 0},
+            {0, 0, 0, 0, 0}
+        };
+        imageComponentLabeling(pixel, 5);
     }
 }

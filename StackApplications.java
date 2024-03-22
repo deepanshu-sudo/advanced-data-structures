@@ -15,27 +15,6 @@ import java.util.Arrays;
  * 10. Tower of Hanoi using Stack
  */
 public class StackApplications {
-
-    /**
-     * Create a Point class to represent a point in the maze
-     */
-    public static class Point {
-        int x;
-        int y;
-        public Point(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public boolean equals(Point p) {
-            return this.x == p.x && this.y == p.y;
-        }
-
-        public String toString() {
-            return "(" + x + ", " + y + ")";
-        }
-    }
-
     /**
      * This method is used to check if a character is an operator
      * @param c the character to be checked
