@@ -162,7 +162,7 @@ public class ArrayBinaryTree<T> {
     /** @return index of the element that's being searched */
     public int search(T element) {
         for(int i = 0; i < tree.length; i++) {
-            if(tree[i] == element)
+            if(tree[i] != null && tree[i].equals(element))
                 return i;
         }
         return -1;
@@ -188,5 +188,16 @@ public class ArrayBinaryTree<T> {
         System.out.println("Level Order Traversal: ");
         tree.levelOrder();
         System.out.println();
+        System.out.println("Level Order Traversal Easy: ");
+        tree.levelOrderEasy();
+        System.out.println();
+        System.out.println("Height of the tree: "+tree.height());
+        System.out.println("Enter the element to search: ");
+        String element = sc.next();
+        int index = tree.search(element);
+        if(index != -1)
+            System.out.println(element+" is found at index "+index);
+        else
+            System.out.println(element+" is not found");
     }
 }
