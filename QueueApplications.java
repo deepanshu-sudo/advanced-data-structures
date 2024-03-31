@@ -8,7 +8,7 @@ public class QueueApplications {
     /**
      * Railroad Car Re-Arrangement Problem:
      * Let there be n cars that are numbered from 1 to n on an input line such that they are not in sequence from right to left i.e. [581742963]
-     * There are k holding tracks to hold cars temporarily. The c ars can be moved from the input line to the holding tracks and then from the holding tracks to the output line.
+     * There are k holding tracks to hold cars temporarily. The cars can be moved from the input line to the holding tracks and then from the holding tracks to the output line.
      * The problem is to rearrange the cars from the input line to the output line such that the cars are in sequence from right to left i.e. [987654321]
      * For a car c,if it is feasible to keep on more than one holding tracks having some cars on them, then it will be keep on having largest car no on them that is < c.
      * @param inputOrder Array of cars

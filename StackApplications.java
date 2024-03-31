@@ -448,12 +448,12 @@ public class StackApplications {
         System.out.println(gcdStack(12, 15));
 
         // Test Fibonacci
-        System.out.println("Fibonacci of 10:");
-        System.out.println(fibonacciStack(10));
+        System.out.println("Fibonacci of 6:");
+        System.out.println(fibonacciStack(6));
 
         // Test Fibonacci Easy
-        System.out.println("Fibonacci of 10:");
-        System.out.println(fibonacciStackEasy(10));
+        System.out.println("Fibonacci of 6:");
+        System.out.println(fibonacciStackEasy(6));
 
         // Test Decimal to Binary
         System.out.println("Binary of 13:");
