@@ -81,7 +81,7 @@
                 } else {
                     stack.push(x-1);
                     stack.push(x-2);
-                }
+                 }
             }
             return fib;
         }
@@ -273,17 +273,18 @@
 
         public static int decimalWithStack(int x) {
             Stack<Integer> stack = new Stack<>();
+
             while(x > 0) {
                 stack.push(x % 10);
                 x = x / 10;
             }
-            int sum = 0;
-            int multiplier = 1;
+            int decimal = 0;
+            int power = stack.size()-1;
             while(!stack.isEmpty()) {
-                sum += stack.pop() * multiplier;
-                multiplier *= 8;
+                decimal += stack.pop() * Math.pow(8, power);
+                power--;
             }
-            return sum;
+            return decimal;
         }
 
 
@@ -297,5 +298,6 @@
             System.out.println(infixToPostfix("(10*4+6)/(8-3*2)")); // 104*6+832*-/
             System.out.println(infixToPostfix("((10-4)*5)/(8-3*2)")); // 104-5*832*-/
             System.out.println(decimal(123)); // 83
+            System.out.println(decimalWithStack(123)); // 83
         }
     }
