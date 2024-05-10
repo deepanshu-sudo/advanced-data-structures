@@ -262,7 +262,15 @@
          * 3. Return x % 10 + 8 * decimal(x / 10).
          * 
          * Algorithm to convert octal to decimal using stack:
-         * 
+         * 1. Create a function decimalWithStack(x) which takes an integer x as input.
+         * 2. Create a stack.
+         * 3. While x is greater than 0, push x % 10 to the stack and update x to x / 10.
+         * 4. Create a variable decimal and initialize it to 0.
+         * 5. Create a variable power and initialize it to stack.size()-1.
+         * 6. While stack is not empty, do the following:
+         *     a. Pop the top element from the stack and add it to decimal multiplied by 8 raised to the power.
+         *     b. Decrement the power by 1.
+         * 7. Return decimal.
         */
         public static int decimal(int x) {
             if (x == 0) {
